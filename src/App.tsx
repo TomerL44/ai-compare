@@ -9,6 +9,7 @@ import { CATEGORIES } from './data/agents';
 import type { ToolVersion } from './data/agents';
 import { useAIModels } from './hooks/useAIModels';
 import { Sparkles, ArrowRightLeft, ListMinus } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 type ViewMode = 'compare' | 'tierlist';
 
@@ -199,6 +200,7 @@ function App() {
           onClose={() => setSelectedVersionForDetails(null)}
         />
       )}
+      <Analytics />
     </div>
   );
 }
