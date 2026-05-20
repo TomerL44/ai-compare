@@ -143,17 +143,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
               </svg>
               Google
             </button>
-            <button
-              onClick={() => handleOAuth('apple')}
-              disabled={loading}
-              className="flex justify-center items-center py-3 px-4 border border-white/10 rounded-xl shadow-sm bg-white/5 text-sm font-medium text-white hover:bg-white/10 transition-colors disabled:opacity-50"
-            >
-              <svg className="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.74.887-1.99 1.57-3.23 1.57-.12 0-.255-.008-.36-.015-.015-1.127.535-2.27 1.252-3.08.747-.86 1.956-1.54 3.14-1.56.02.008.02.015.02.015v.015a3.97 3.97 0 013.354-1.44z" />
-                <path d="M17.59 7.03c-1.285-.02-2.56.84-3.225.84-.666 0-1.685-.734-2.735-.718-1.378.024-2.645.81-3.358 2.05-1.455 2.53-.37 6.27 1.05 8.35.69 1.015 1.492 2.14 2.57 2.1 1.05-.03 1.453-.67 2.72-.67 1.258 0 1.62.67 2.735.65 1.135-.02 1.838-1.045 2.52-2.05.79-1.157 1.115-2.275 1.13-2.335-.025-.015-2.185-.845-2.205-3.345-.015-2.09 1.705-3.085 1.785-3.13-.97-1.43-2.48-1.585-3.015-1.675v.005z" />
-              </svg>
-              Apple
-            </button>
+
           </div>
 
           <div className="mt-6 text-center">
