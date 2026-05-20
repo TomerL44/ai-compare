@@ -8,10 +8,18 @@ import DetailModal from './components/shared/DetailModal';
 import { CATEGORIES } from './data/agents';
 import type { ToolVersion } from './data/agents';
 import { useAIModels } from './hooks/useAIModels';
-import { Sparkles, ArrowRightLeft, ListMinus } from 'lucide-react';
+import { Sparkles, ArrowRightLeft, ListMinus, ArrowUpDown } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 
 type ViewMode = 'compare' | 'tierlist';
+type SortOrder = 'newest' | 'oldest' | 'name_asc' | 'name_desc';
+
+const SORT_OPTIONS: { value: SortOrder; label: string }[] = [
+  { value: 'newest', label: 'Newest First' },
+  { value: 'oldest', label: 'Oldest First' },
+  { value: 'name_asc', label: 'Name A → Z' },
+  { value: 'name_desc', label: 'Name Z → A' },
+];
 
 function App() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
@@ -19,17 +27,34 @@ function App() {
   const [isComparisonOpen, setIsComparisonOpen] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>('compare');
   const [selectedVersionForDetails, setSelectedVersionForDetails] = useState<ToolVersion | null>(null);
+  const [sortOrder, setSortOrder] = useState<SortOrder>('newest');
 
   const { tools, toolVersions, rankings } = useAIModels(activeCategory);
 
-  // Filter specific versions based on category of their parent tools
+  // Filter versions based on their own categoryIds (multi-category support)
   const filteredVersions = useMemo(() => {
-    if (!activeCategory) return toolVersions;
-    return toolVersions.filter(v => {
-      const parent = tools.find(t => t.id === v.toolId);
-      return parent?.categoryId === activeCategory;
-    });
-  }, [activeCategory, tools, toolVersions]);
+    let versions = activeCategory
+      ? toolVersions.filter(v => v.categoryIds?.includes(activeCategory))
+      : [...toolVersions];
+
+    // Apply sort order
+    switch (sortOrder) {
+      case 'newest':
+        versions.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        break;
+      case 'oldest':
+        versions.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
+        break;
+      case 'name_asc':
+        versions.sort((a, b) => a.fullName.localeCompare(b.fullName));
+        break;
+      case 'name_desc':
+        versions.sort((a, b) => b.fullName.localeCompare(a.fullName));
+        break;
+    }
+
+    return versions;
+  }, [activeCategory, tools, toolVersions, sortOrder]);
 
   const comparedVersions = useMemo(() => {
     return comparisonList.map(id => toolVersions.find(v => v.id === id)!).filter(Boolean);
@@ -110,6 +135,28 @@ function App() {
           
           <div className="flex-1 w-full min-w-0">
             {viewMode === 'compare' ? (
+              <>
+              {/* Sort Control Bar */}
+              <div className="flex items-center justify-between mb-6">
+                <p className="text-sm text-white/40">
+                  <span className="font-semibold text-white/70">{filteredVersions.length}</span> models
+                </p>
+                <div className="relative flex items-center gap-2">
+                  <ArrowUpDown className="w-4 h-4 text-white/40" />
+                  <select
+                    value={sortOrder}
+                    onChange={(e) => setSortOrder(e.target.value as SortOrder)}
+                    className="appearance-none bg-white/5 border border-white/10 text-white text-sm font-medium rounded-xl px-4 py-2 pr-8 cursor-pointer hover:bg-white/10 hover:border-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+                    style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff80' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 10px center' }}
+                  >
+                    {SORT_OPTIONS.map(opt => (
+                      <option key={opt.value} value={opt.value} className="bg-[#1a1a2e] text-white">
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredVersions.map(version => (
                   <AgentCard
@@ -129,6 +176,7 @@ function App() {
                   </div>
                 )}
               </div>
+              </>
             ) : (
               <TierList 
                 versions={filteredVersions} 

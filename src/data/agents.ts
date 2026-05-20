@@ -24,6 +24,8 @@ export interface ToolVersion {
   pricingModel: PricingModel;
   contextWindow: string;
   platforms: string;
+  createdAt: number;
+  categoryIds: string[];
 }
 
 export const CATEGORIES: Category[] = [
@@ -243,325 +245,6 @@ export const TOOLS: Tool[] = [
 
 export const TOOL_VERSIONS: ToolVersion[] = [
   {
-    "id": "v_gpt_54_pro",
-    "toolId": "t_openai",
-    "versionName": "5.4 Pro",
-    "fullName": "ChatGPT-5.4 Pro",
-    "description": "Breakthrough model featuring native computer use and agentic UI navigation without human intervention. Reaches a new paradigm in reasoning with an 18% reduction in factual errors and native Codex-level coding capability.",
-    "bestFor": "Native computer use and UI navigation",
-    "pricingModel": "Enterprise",
-    "contextWindow": "2M tokens",
-    "platforms": "Web, API, Desktop"
-  },
-  {
-    "id": "v_gpt_o3_pro",
-    "toolId": "t_openai",
-    "versionName": "o3 Pro",
-    "fullName": "ChatGPT o3 Pro",
-    "description": "Deep reasoning model specializing in complex logic, mathematics, and long-form coding via Chain-of-Thought processing before answering.",
-    "bestFor": "Deep mathematical and coding reasoning",
-    "pricingModel": "Pro",
-    "contextWindow": "200k tokens",
-    "platforms": "Web, API"
-  },
-  {
-    "id": "v_gpt_oss_120b",
-    "toolId": "t_openai",
-    "versionName": "OSS 120B",
-    "fullName": "GPT-OSS 120B",
-    "description": "OpenAI's open-weights model targeted at local deployments with high security requirements. Offers adjustable reasoning effort.",
-    "bestFor": "Secure local deployment in VPCs",
-    "pricingModel": "Open Source",
-    "contextWindow": "128k tokens",
-    "platforms": "Local, API"
-  },
-  {
-    "id": "v_gemini_31_pro",
-    "toolId": "t_google",
-    "versionName": "3.1 Pro",
-    "fullName": "Gemini 3.1 Pro",
-    "description": "Google's cutting-edge flagship capable of \"Vibe coding\" and multi-step physical planning. Scored 100% on AIME 2025 high-school math tests and 91.9% on GPQA Diamond.",
-    "bestFor": "Vibe coding & physical agentic actions",
-    "pricingModel": "Pro",
-    "contextWindow": "2M+ tokens",
-    "platforms": "Web, Vertex AI, API"
-  },
-  {
-    "id": "v_gemini_25_flash",
-    "toolId": "t_google",
-    "versionName": "2.5 Flash",
-    "fullName": "Gemini 2.5 Flash",
-    "description": "High-speed model balancing latency with capable reasoning. Integrates real-time audio and conversational processing.",
-    "bestFor": "Low-latency agentic conversations",
-    "pricingModel": "Free",
-    "contextWindow": "1M tokens",
-    "platforms": "Web, API"
-  },
-  {
-    "id": "v_claude_46_opus",
-    "toolId": "t_anthropic",
-    "versionName": "Opus 4.6",
-    "fullName": "Claude Opus 4.6",
-    "description": "Anthropic's gold-standard model featuring extended and adaptive thinking. Automatically scales processing resources dynamically based on prompt complexity.",
-    "bestFor": "Logical agency & reasoning orchestration",
-    "pricingModel": "Enterprise",
-    "contextWindow": "N/A",
-    "platforms": "Web, API, AWS Bedrock"
-  },
-  {
-    "id": "v_claude_46_sonnet",
-    "toolId": "t_anthropic",
-    "versionName": "Sonnet 4.6",
-    "fullName": "Claude Sonnet 4.6",
-    "description": "The definitive choice for software engineers. Shattered SWE Bench coding records with an 82% problem resolution rate. Masterful usage of Artifacts.",
-    "bestFor": "Advanced Agentic Coding",
-    "pricingModel": "Pro",
-    "contextWindow": "N/A",
-    "platforms": "Web, API, IDEs"
-  },
-  {
-    "id": "v_llama4_scout",
-    "toolId": "t_meta",
-    "versionName": "Scout 17B-16E",
-    "fullName": "Llama 4 Scout",
-    "description": "A Mixture-of-Experts architecture featuring a record-breaking 10 million token context window. Processes at an astounding 2600 tokens per second on consumer hardware via FP8 quantization.",
-    "bestFor": "Ultra-long context repository indexing",
-    "pricingModel": "Open Source",
-    "contextWindow": "10M tokens",
-    "platforms": "Local, Cloud VMs"
-  },
-  {
-    "id": "v_deepseek_v3",
-    "toolId": "t_deepseek",
-    "versionName": "V3 Base",
-    "fullName": "DeepSeek V3",
-    "description": "A massive 671B parameter model operating on only 37B active parameters per token. Shattered global pricing monopolies by drastically reducing API processing costs.",
-    "bestFor": "Cost-effective scalable reasoning",
-    "pricingModel": "Open Source",
-    "contextWindow": "256k tokens",
-    "platforms": "API, Local"
-  },
-  {
-    "id": "v_deepseek_r1",
-    "toolId": "t_deepseek",
-    "versionName": "R1",
-    "fullName": "DeepSeek R1",
-    "description": "An open-source (MIT License) reasoning model trained via strict Reinforcement Learning (RL), bringing GPT-4.5 level logic processing out of localized walls.",
-    "bestFor": "Open-source logic validation",
-    "pricingModel": "Open Source",
-    "contextWindow": "64k tokens",
-    "platforms": "Local, Cloud VMs"
-  },
-  {
-    "id": "v_mistral_large_3",
-    "toolId": "t_mistral",
-    "versionName": "Large 3",
-    "fullName": "Mistral Large 3",
-    "description": "675B parameter flagship compliant with European AI act regulations. Superb multilingual agentic capability with a minimal computational footprint.",
-    "bestFor": "Sovereign and regulated AI processing",
-    "pricingModel": "Enterprise",
-    "contextWindow": "256k tokens",
-    "platforms": "API, Azure, Local"
-  },
-  {
-    "id": "v_codestral_2508",
-    "toolId": "t_mistral",
-    "versionName": "Codestral 25.08",
-    "fullName": "Codestral 25.08",
-    "description": "Masterful Fill-in-the-Middle (FIM) model that decreases continuous coding errors by 50% compared to previous generations. Fully deployable within isolated networks.",
-    "bestFor": "Private VPC IDE autocompletion",
-    "pricingModel": "Open Source",
-    "contextWindow": "N/A",
-    "platforms": "Local, IDE Extensions"
-  },
-  {
-    "id": "v_qwen_35_397b",
-    "toolId": "t_alibaba",
-    "versionName": "3.5 397B",
-    "fullName": "Qwen 3.5 397B",
-    "description": "Alibaba's absolute beast of an open-weights model, fully integrating multimodal visual understanding with agentic reasoning out-of-the-box.",
-    "bestFor": "Heavy local multimodal agency",
-    "pricingModel": "Open Source",
-    "contextWindow": "N/A",
-    "platforms": "Local"
-  },
-  {
-    "id": "v_kimi_k25",
-    "toolId": "t_moonshot",
-    "versionName": "K2.5",
-    "fullName": "Kimi K2.5",
-    "description": "Features \"Agent Swarm\" architecture to coordinate 100 parallel sub-agents to solve one massive problem. Excels at generating pixel-perfect UI code directly from mockups or demo videos.",
-    "bestFor": "Visual coding & Swarm orchestration",
-    "pricingModel": "Pro",
-    "contextWindow": "Large",
-    "platforms": "Web, API"
-  },
-  {
-    "id": "v_grok_41",
-    "toolId": "t_xai",
-    "versionName": "4.1 Thinking",
-    "fullName": "Grok 4.1",
-    "description": "Integrated flawlessly with X, featuring real-time reality comprehension, vastly improved Emotional Quotient (EQ), and 64% boost in user preference blind-tests.",
-    "bestFor": "Real-time social data ingestion",
-    "pricingModel": "Pro",
-    "contextWindow": "N/A",
-    "platforms": "Web, Mobile (X App)"
-  },
-  {
-    "id": "v_nano_banana_2",
-    "toolId": "t_nano_banana",
-    "versionName": "2",
-    "fullName": "Nano Banana 2",
-    "description": "Google's Gemini 3.1 Flash Image. Incredibly fast generation with multi-lingual typography support. Retains unbreakable consistency across 5 characters and 14 distinct objects within 4K renders.",
-    "bestFor": "Perfect typographics and localized visuals",
-    "pricingModel": "Free",
-    "contextWindow": "N/A",
-    "platforms": "Web"
-  },
-  {
-    "id": "v_midjourney_v8",
-    "toolId": "t_midjourney",
-    "versionName": "V8",
-    "fullName": "Midjourney V8",
-    "description": "The unquestioned leader in artistic cinematography. V8 deployed new massive server clusters for hyper-detailed depth simulations and perfect skin/hand anatomy.",
-    "bestFor": "Artistic cinema & photography simulation",
-    "pricingModel": "Pro",
-    "contextWindow": "N/A",
-    "platforms": "Discord, Web"
-  },
-  {
-    "id": "v_flux_2_pro",
-    "toolId": "t_flux",
-    "versionName": "Flux.2 Pro",
-    "fullName": "Flux.2 Pro",
-    "description": "Permits multi-reference control inputs for determining styles versus subject identities. Reaches 4MP resolution photorealism natively on 16GB VRAM cards.",
-    "bestFor": "Local photorealistic synthesis",
-    "pricingModel": "Open Source",
-    "contextWindow": "N/A",
-    "platforms": "Local, UI nodes"
-  },
-  {
-    "id": "v_runway_gen45",
-    "toolId": "t_runway",
-    "versionName": "Gen-4.5",
-    "fullName": "Runway Gen-4.5",
-    "description": "Transformed from a video generator into a General World Model. Features pixel-perfect physics simulation, native environmental audio (Foley), and infinite multi-shot editing.",
-    "bestFor": "Native audio VFX physics simulation",
-    "pricingModel": "Enterprise",
-    "contextWindow": "N/A",
-    "platforms": "Web, API"
-  },
-  {
-    "id": "v_luma_ray314",
-    "toolId": "t_luma",
-    "versionName": "Ray 3.14",
-    "fullName": "Luma Ray 3.14",
-    "description": "First reasoning-driven video editor producing true 16bit HDR renders. Allows direct character identity planting mapped perfectly onto existing live-action 1080p clips.",
-    "bestFor": "Post-production and HDR color grading",
-    "pricingModel": "Pro",
-    "contextWindow": "N/A",
-    "platforms": "Web"
-  },
-  {
-    "id": "v_kling_26",
-    "toolId": "t_kling",
-    "versionName": "2.6 Pro",
-    "fullName": "Kling 2.6 Pro",
-    "description": "Achieves the impossible by generating perfectly lip-synced video alongside human voices, all while handling continuous complex movement tracking for up to 30 seconds.",
-    "bestFor": "Lip-synced audiovisual generation",
-    "pricingModel": "Pro",
-    "contextWindow": "N/A",
-    "platforms": "Web"
-  },
-  {
-    "id": "v_suno_v5",
-    "toolId": "t_suno",
-    "versionName": "V5 Studio",
-    "fullName": "Suno V5",
-    "description": "Transforms text completely into a full studio DAW output workspace. Supports high-fidelity MIDI extraction, separated stems, and advanced emotional expression.",
-    "bestFor": "Studio music generation & stem extraction",
-    "pricingModel": "Pro",
-    "contextWindow": "N/A",
-    "platforms": "Web"
-  },
-  {
-    "id": "v_udio_26",
-    "toolId": "t_udio",
-    "versionName": "Udio 2026",
-    "fullName": "Udio 2026",
-    "description": "Empowered by chat-to-edit capabilities (Meloty AI) enabling users to literally text changes into the song. Legally sources via the Merlin collective.",
-    "bestFor": "Chat-driven music editing & tracking",
-    "pricingModel": "Pro",
-    "contextWindow": "N/A",
-    "platforms": "Web"
-  },
-  {
-    "id": "v_eleven_v3_voice",
-    "toolId": "t_elevenlabs",
-    "versionName": "Eleven v3",
-    "fullName": "ElevenLabs v3",
-    "description": "Allows purely textual voice design (e.g. \"Scratchy old witch\") without traditional voice cloning. Includes in-line audio tags like [whispers] and highly complex pronunciation control.",
-    "bestFor": "Zero-shot voice design & audio tags",
-    "pricingModel": "Enterprise",
-    "contextWindow": "N/A",
-    "platforms": "Web, API"
-  },
-  {
-    "id": "v_voxtral_realtime",
-    "toolId": "t_mistral",
-    "versionName": "Voxtral Realtime",
-    "fullName": "Voxtral Realtime",
-    "description": "Open-source 4B parameter model built strictly for real-time customer service voice streaming. Experiences under 200ms latency without skipping.",
-    "bestFor": "Real-time conversational streaming",
-    "pricingModel": "Open Source",
-    "contextWindow": "N/A",
-    "platforms": "Local, API"
-  },
-  {
-    "id": "v_cursor_26",
-    "toolId": "t_cursor",
-    "versionName": "2026",
-    "fullName": "Cursor",
-    "description": "The default IDE for the AI era. Autonomously reads across thousands of files to apply full architecture refactors directly using tools like Claude 4.6.",
-    "bestFor": "Autonomous codebase-wide refactors",
-    "pricingModel": "Pro",
-    "contextWindow": "Large via API",
-    "platforms": "Desktop IDE"
-  },
-  {
-    "id": "v_replit_agent3",
-    "toolId": "t_replit",
-    "versionName": "Agent 3",
-    "fullName": "Replit Agent 3",
-    "description": "Perfect tool for non-engineers. Translates a raw text prompt straight into a functional deployed application, complete with database provisioning.",
-    "bestFor": "Text-to-Prototype zero-setup deployment",
-    "pricingModel": "Pro",
-    "contextWindow": "N/A",
-    "platforms": "Web IDE"
-  },
-  {
-    "id": "v_sonar_council",
-    "toolId": "t_perplexity",
-    "versionName": "Model Council",
-    "fullName": "Perplexity Model Council",
-    "description": "Runs a single query across multiple apex models (GPT-5.4, Claude 4.6, Gemini 3) simultaneously to calculate a consensus. Nullifies hallucination risks for high-stakes enterprise decisions.",
-    "bestFor": "High-stakes consensus research",
-    "pricingModel": "Enterprise",
-    "contextWindow": "Large",
-    "platforms": "Web, API"
-  },
-  {
-    "id": "v_character_pip",
-    "toolId": "t_characterai",
-    "versionName": "PipSqueak",
-    "fullName": "Character.ai PipSqueak",
-    "description": "Companions possessing long-term emotional memory and interactive multi-modal real-time audio chat capabilities.",
-    "bestFor": "Virtual companionship and roleplay",
-    "pricingModel": "Free",
-    "contextWindow": "Extensive",
-    "platforms": "Web, App"
-  },
-  {
     "id": "v_google_gemini_3_5_flash",
     "toolId": "t_google",
     "versionName": "3.5 Flash",
@@ -570,7 +253,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Pro",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1779193800,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_anthropic_claude_opus_4_7_fast",
@@ -581,7 +270,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Deep logical & mathematical reasoning",
     "pricingModel": "Enterprise",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1778613011,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemini_3_1_flash_lite",
@@ -592,7 +286,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Pro",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1778168828,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_chat_latest",
@@ -603,7 +303,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1778000212,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_x_ai_grok_4_3",
@@ -614,7 +319,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1777591821,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mistral_medium_3_5",
@@ -625,7 +334,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1777570439,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_5_plus_20260420",
@@ -636,7 +350,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1777261368,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_qwen_qwen3_6_flash",
@@ -647,7 +366,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Open Source",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1777261362,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_qwen_qwen3_6_35b_a3b",
@@ -658,7 +382,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1777260255,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_6_max_preview",
@@ -669,7 +397,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1777260242,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_qwen_qwen3_6_27b",
@@ -680,7 +413,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1777255064,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_openai_gpt_5_5_pro",
@@ -691,7 +429,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Enterprise",
     "contextWindow": "1,050,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1777051896,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_5",
@@ -702,7 +445,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "1,050,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1777051893,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_deepseek_deepseek_v4_pro",
@@ -713,7 +461,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1777000679,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_deepseek_deepseek_v4_flash_free",
@@ -724,7 +477,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Free",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1777000666,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_deepseek_deepseek_v4_flash",
@@ -735,7 +492,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Open Source",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1777000666,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_4_image_2",
@@ -746,7 +507,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "272,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1776797528,
+    "categoryIds": [
+      "code",
+      "video",
+      "tasks"
+    ]
   },
   {
     "id": "v_anthropic_claude_opus_4_7",
@@ -757,7 +524,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Deep logical & mathematical reasoning",
     "pricingModel": "Pro",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1776351100,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_anthropic_claude_opus_4_6_fast",
@@ -768,7 +540,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Deep logical & mathematical reasoning",
     "pricingModel": "Enterprise",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1775592472,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemma_4_26b_a4b_it_free",
@@ -779,7 +556,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Free",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1775227989,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemma_4_26b_a4b_it",
@@ -790,7 +572,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1775227989,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemma_4_31b_it_free",
@@ -801,7 +588,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Free",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1775148486,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemma_4_31b_it",
@@ -812,7 +604,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1775148486,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_6_plus",
@@ -823,7 +620,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1775133557,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_x_ai_grok_4_20_multi_agent",
@@ -834,7 +635,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "2,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1774979158,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_x_ai_grok_4_20",
@@ -845,7 +650,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "2,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1774979019,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_google_lyria_3_pro_preview",
@@ -856,7 +665,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Free",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1774907286,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_lyria_3_clip_preview",
@@ -867,7 +682,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Free",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1774907255,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_4_nano",
@@ -878,7 +699,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1773748187,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_4_mini",
@@ -889,7 +715,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1773748178,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mistral_small_2603",
@@ -900,7 +731,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1773695685,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_5_9b",
@@ -911,7 +747,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1773152396,
+    "categoryIds": [
+      "tasks",
+      "code",
+      "video"
+    ]
   },
   {
     "id": "v_openai_gpt_5_4_pro",
@@ -922,7 +764,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Enterprise",
     "contextWindow": "1,050,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1772734366,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_4",
@@ -933,7 +780,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "1,050,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1772734352,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_3_chat",
@@ -944,7 +796,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1772564061,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemini_3_1_flash_lite_preview",
@@ -955,7 +812,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Pro",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1772512673,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemini_3_1_flash_image_preview",
@@ -966,7 +829,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Pro",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1772119558,
+    "categoryIds": [
+      "code",
+      "video",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_5_35b_a3b",
@@ -977,7 +846,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1772053822,
+    "categoryIds": [
+      "tasks",
+      "video"
+    ]
   },
   {
     "id": "v_qwen_qwen3_5_27b",
@@ -988,7 +862,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1772053810,
+    "categoryIds": [
+      "tasks",
+      "video"
+    ]
   },
   {
     "id": "v_qwen_qwen3_5_122b_a10b",
@@ -999,7 +878,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1772053789,
+    "categoryIds": [
+      "tasks",
+      "video"
+    ]
   },
   {
     "id": "v_qwen_qwen3_5_flash_02_23",
@@ -1010,7 +894,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Open Source",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1772053776,
+    "categoryIds": [
+      "tasks",
+      "video"
+    ]
   },
   {
     "id": "v_google_gemini_3_1_pro_preview_customtools",
@@ -1021,7 +910,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "1,048,756 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1772045923,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_3_codex",
@@ -1032,7 +927,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Advanced coding and syntax assistance",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1771959164,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemini_3_1_pro_preview",
@@ -1043,7 +943,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1771509627,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_anthropic_claude_sonnet_4_6",
@@ -1054,7 +960,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1771342990,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_5_plus_02_15",
@@ -1065,7 +976,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1771229416,
+    "categoryIds": [
+      "tasks",
+      "video"
+    ]
   },
   {
     "id": "v_qwen_qwen3_5_397b_a17b",
@@ -1076,7 +992,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1771223018,
+    "categoryIds": [
+      "tasks",
+      "video"
+    ]
   },
   {
     "id": "v_qwen_qwen3_max_thinking",
@@ -1087,7 +1008,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1770671901,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_anthropic_claude_opus_4_6",
@@ -1098,7 +1023,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Deep logical & mathematical reasoning",
     "pricingModel": "Pro",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1770219050,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_coder_next",
@@ -1109,7 +1039,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Advanced coding and syntax assistance",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1770164101,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_openai_gpt_audio",
@@ -1120,7 +1055,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1768862569,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_audio_mini",
@@ -1131,7 +1072,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1768859419,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_2_codex",
@@ -1142,7 +1089,447 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Advanced coding and syntax assistance",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1768409315,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
+  },
+  {
+    "id": "v_gpt_54_pro",
+    "toolId": "t_openai",
+    "versionName": "5.4 Pro",
+    "fullName": "ChatGPT-5.4 Pro",
+    "description": "Breakthrough model featuring native computer use and agentic UI navigation without human intervention. Reaches a new paradigm in reasoning with an 18% reduction in factual errors and native Codex-level coding capability.",
+    "bestFor": "Native computer use and UI navigation",
+    "pricingModel": "Enterprise",
+    "contextWindow": "2M tokens",
+    "platforms": "Web, API, Desktop",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "code"
+    ]
+  },
+  {
+    "id": "v_gpt_o3_pro",
+    "toolId": "t_openai",
+    "versionName": "o3 Pro",
+    "fullName": "ChatGPT o3 Pro",
+    "description": "Deep reasoning model specializing in complex logic, mathematics, and long-form coding via Chain-of-Thought processing before answering.",
+    "bestFor": "Deep mathematical and coding reasoning",
+    "pricingModel": "Pro",
+    "contextWindow": "200k tokens",
+    "platforms": "Web, API",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "code"
+    ]
+  },
+  {
+    "id": "v_gpt_oss_120b",
+    "toolId": "t_openai",
+    "versionName": "OSS 120B",
+    "fullName": "GPT-OSS 120B",
+    "description": "OpenAI's open-weights model targeted at local deployments with high security requirements. Offers adjustable reasoning effort.",
+    "bestFor": "Secure local deployment in VPCs",
+    "pricingModel": "Open Source",
+    "contextWindow": "128k tokens",
+    "platforms": "Local, API",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "code"
+    ]
+  },
+  {
+    "id": "v_gemini_31_pro",
+    "toolId": "t_google",
+    "versionName": "3.1 Pro",
+    "fullName": "Gemini 3.1 Pro",
+    "description": "Google's cutting-edge flagship capable of \"Vibe coding\" and multi-step physical planning. Scored 100% on AIME 2025 high-school math tests and 91.9% on GPQA Diamond.",
+    "bestFor": "Vibe coding & physical agentic actions",
+    "pricingModel": "Pro",
+    "contextWindow": "2M+ tokens",
+    "platforms": "Web, Vertex AI, API",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "code"
+    ]
+  },
+  {
+    "id": "v_gemini_25_flash",
+    "toolId": "t_google",
+    "versionName": "2.5 Flash",
+    "fullName": "Gemini 2.5 Flash",
+    "description": "High-speed model balancing latency with capable reasoning. Integrates real-time audio and conversational processing.",
+    "bestFor": "Low-latency agentic conversations",
+    "pricingModel": "Free",
+    "contextWindow": "1M tokens",
+    "platforms": "Web, API",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "code"
+    ]
+  },
+  {
+    "id": "v_claude_46_opus",
+    "toolId": "t_anthropic",
+    "versionName": "Opus 4.6",
+    "fullName": "Claude Opus 4.6",
+    "description": "Anthropic's gold-standard model featuring extended and adaptive thinking. Automatically scales processing resources dynamically based on prompt complexity.",
+    "bestFor": "Logical agency & reasoning orchestration",
+    "pricingModel": "Enterprise",
+    "contextWindow": "N/A",
+    "platforms": "Web, API, AWS Bedrock",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "code"
+    ]
+  },
+  {
+    "id": "v_claude_46_sonnet",
+    "toolId": "t_anthropic",
+    "versionName": "Sonnet 4.6",
+    "fullName": "Claude Sonnet 4.6",
+    "description": "The definitive choice for software engineers. Shattered SWE Bench coding records with an 82% problem resolution rate. Masterful usage of Artifacts.",
+    "bestFor": "Advanced Agentic Coding",
+    "pricingModel": "Pro",
+    "contextWindow": "N/A",
+    "platforms": "Web, API, IDEs",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "code"
+    ]
+  },
+  {
+    "id": "v_llama4_scout",
+    "toolId": "t_meta",
+    "versionName": "Scout 17B-16E",
+    "fullName": "Llama 4 Scout",
+    "description": "A Mixture-of-Experts architecture featuring a record-breaking 10 million token context window. Processes at an astounding 2600 tokens per second on consumer hardware via FP8 quantization.",
+    "bestFor": "Ultra-long context repository indexing",
+    "pricingModel": "Open Source",
+    "contextWindow": "10M tokens",
+    "platforms": "Local, Cloud VMs",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "tasks"
+    ]
+  },
+  {
+    "id": "v_deepseek_v3",
+    "toolId": "t_deepseek",
+    "versionName": "V3 Base",
+    "fullName": "DeepSeek V3",
+    "description": "A massive 671B parameter model operating on only 37B active parameters per token. Shattered global pricing monopolies by drastically reducing API processing costs.",
+    "bestFor": "Cost-effective scalable reasoning",
+    "pricingModel": "Open Source",
+    "contextWindow": "256k tokens",
+    "platforms": "API, Local",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "tasks"
+    ]
+  },
+  {
+    "id": "v_deepseek_r1",
+    "toolId": "t_deepseek",
+    "versionName": "R1",
+    "fullName": "DeepSeek R1",
+    "description": "An open-source (MIT License) reasoning model trained via strict Reinforcement Learning (RL), bringing GPT-4.5 level logic processing out of localized walls.",
+    "bestFor": "Open-source logic validation",
+    "pricingModel": "Open Source",
+    "contextWindow": "64k tokens",
+    "platforms": "Local, Cloud VMs",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "tasks"
+    ]
+  },
+  {
+    "id": "v_mistral_large_3",
+    "toolId": "t_mistral",
+    "versionName": "Large 3",
+    "fullName": "Mistral Large 3",
+    "description": "675B parameter flagship compliant with European AI act regulations. Superb multilingual agentic capability with a minimal computational footprint.",
+    "bestFor": "Sovereign and regulated AI processing",
+    "pricingModel": "Enterprise",
+    "contextWindow": "256k tokens",
+    "platforms": "API, Azure, Local",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "tasks"
+    ]
+  },
+  {
+    "id": "v_codestral_2508",
+    "toolId": "t_mistral",
+    "versionName": "Codestral 25.08",
+    "fullName": "Codestral 25.08",
+    "description": "Masterful Fill-in-the-Middle (FIM) model that decreases continuous coding errors by 50% compared to previous generations. Fully deployable within isolated networks.",
+    "bestFor": "Private VPC IDE autocompletion",
+    "pricingModel": "Open Source",
+    "contextWindow": "N/A",
+    "platforms": "Local, IDE Extensions",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "tasks"
+    ]
+  },
+  {
+    "id": "v_qwen_35_397b",
+    "toolId": "t_alibaba",
+    "versionName": "3.5 397B",
+    "fullName": "Qwen 3.5 397B",
+    "description": "Alibaba's absolute beast of an open-weights model, fully integrating multimodal visual understanding with agentic reasoning out-of-the-box.",
+    "bestFor": "Heavy local multimodal agency",
+    "pricingModel": "Open Source",
+    "contextWindow": "N/A",
+    "platforms": "Local",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "tasks"
+    ]
+  },
+  {
+    "id": "v_kimi_k25",
+    "toolId": "t_moonshot",
+    "versionName": "K2.5",
+    "fullName": "Kimi K2.5",
+    "description": "Features \"Agent Swarm\" architecture to coordinate 100 parallel sub-agents to solve one massive problem. Excels at generating pixel-perfect UI code directly from mockups or demo videos.",
+    "bestFor": "Visual coding & Swarm orchestration",
+    "pricingModel": "Pro",
+    "contextWindow": "Large",
+    "platforms": "Web, API",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "code"
+    ]
+  },
+  {
+    "id": "v_grok_41",
+    "toolId": "t_xai",
+    "versionName": "4.1 Thinking",
+    "fullName": "Grok 4.1",
+    "description": "Integrated flawlessly with X, featuring real-time reality comprehension, vastly improved Emotional Quotient (EQ), and 64% boost in user preference blind-tests.",
+    "bestFor": "Real-time social data ingestion",
+    "pricingModel": "Pro",
+    "contextWindow": "N/A",
+    "platforms": "Web, Mobile (X App)",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "tasks"
+    ]
+  },
+  {
+    "id": "v_nano_banana_2",
+    "toolId": "t_nano_banana",
+    "versionName": "2",
+    "fullName": "Nano Banana 2",
+    "description": "Google's Gemini 3.1 Flash Image. Incredibly fast generation with multi-lingual typography support. Retains unbreakable consistency across 5 characters and 14 distinct objects within 4K renders.",
+    "bestFor": "Perfect typographics and localized visuals",
+    "pricingModel": "Free",
+    "contextWindow": "N/A",
+    "platforms": "Web",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "video"
+    ]
+  },
+  {
+    "id": "v_midjourney_v8",
+    "toolId": "t_midjourney",
+    "versionName": "V8",
+    "fullName": "Midjourney V8",
+    "description": "The unquestioned leader in artistic cinematography. V8 deployed new massive server clusters for hyper-detailed depth simulations and perfect skin/hand anatomy.",
+    "bestFor": "Artistic cinema & photography simulation",
+    "pricingModel": "Pro",
+    "contextWindow": "N/A",
+    "platforms": "Discord, Web",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "video"
+    ]
+  },
+  {
+    "id": "v_flux_2_pro",
+    "toolId": "t_flux",
+    "versionName": "Flux.2 Pro",
+    "fullName": "Flux.2 Pro",
+    "description": "Permits multi-reference control inputs for determining styles versus subject identities. Reaches 4MP resolution photorealism natively on 16GB VRAM cards.",
+    "bestFor": "Local photorealistic synthesis",
+    "pricingModel": "Open Source",
+    "contextWindow": "N/A",
+    "platforms": "Local, UI nodes",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "video"
+    ]
+  },
+  {
+    "id": "v_runway_gen45",
+    "toolId": "t_runway",
+    "versionName": "Gen-4.5",
+    "fullName": "Runway Gen-4.5",
+    "description": "Transformed from a video generator into a General World Model. Features pixel-perfect physics simulation, native environmental audio (Foley), and infinite multi-shot editing.",
+    "bestFor": "Native audio VFX physics simulation",
+    "pricingModel": "Enterprise",
+    "contextWindow": "N/A",
+    "platforms": "Web, API",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "video"
+    ]
+  },
+  {
+    "id": "v_luma_ray314",
+    "toolId": "t_luma",
+    "versionName": "Ray 3.14",
+    "fullName": "Luma Ray 3.14",
+    "description": "First reasoning-driven video editor producing true 16bit HDR renders. Allows direct character identity planting mapped perfectly onto existing live-action 1080p clips.",
+    "bestFor": "Post-production and HDR color grading",
+    "pricingModel": "Pro",
+    "contextWindow": "N/A",
+    "platforms": "Web",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "video"
+    ]
+  },
+  {
+    "id": "v_kling_26",
+    "toolId": "t_kling",
+    "versionName": "2.6 Pro",
+    "fullName": "Kling 2.6 Pro",
+    "description": "Achieves the impossible by generating perfectly lip-synced video alongside human voices, all while handling continuous complex movement tracking for up to 30 seconds.",
+    "bestFor": "Lip-synced audiovisual generation",
+    "pricingModel": "Pro",
+    "contextWindow": "N/A",
+    "platforms": "Web",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "video"
+    ]
+  },
+  {
+    "id": "v_suno_v5",
+    "toolId": "t_suno",
+    "versionName": "V5 Studio",
+    "fullName": "Suno V5",
+    "description": "Transforms text completely into a full studio DAW output workspace. Supports high-fidelity MIDI extraction, separated stems, and advanced emotional expression.",
+    "bestFor": "Studio music generation & stem extraction",
+    "pricingModel": "Pro",
+    "contextWindow": "N/A",
+    "platforms": "Web",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "audio"
+    ]
+  },
+  {
+    "id": "v_udio_26",
+    "toolId": "t_udio",
+    "versionName": "Udio 2026",
+    "fullName": "Udio 2026",
+    "description": "Empowered by chat-to-edit capabilities (Meloty AI) enabling users to literally text changes into the song. Legally sources via the Merlin collective.",
+    "bestFor": "Chat-driven music editing & tracking",
+    "pricingModel": "Pro",
+    "contextWindow": "N/A",
+    "platforms": "Web",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "audio"
+    ]
+  },
+  {
+    "id": "v_eleven_v3_voice",
+    "toolId": "t_elevenlabs",
+    "versionName": "Eleven v3",
+    "fullName": "ElevenLabs v3",
+    "description": "Allows purely textual voice design (e.g. \"Scratchy old witch\") without traditional voice cloning. Includes in-line audio tags like [whispers] and highly complex pronunciation control.",
+    "bestFor": "Zero-shot voice design & audio tags",
+    "pricingModel": "Enterprise",
+    "contextWindow": "N/A",
+    "platforms": "Web, API",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "audio"
+    ]
+  },
+  {
+    "id": "v_voxtral_realtime",
+    "toolId": "t_mistral",
+    "versionName": "Voxtral Realtime",
+    "fullName": "Voxtral Realtime",
+    "description": "Open-source 4B parameter model built strictly for real-time customer service voice streaming. Experiences under 200ms latency without skipping.",
+    "bestFor": "Real-time conversational streaming",
+    "pricingModel": "Open Source",
+    "contextWindow": "N/A",
+    "platforms": "Local, API",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "tasks"
+    ]
+  },
+  {
+    "id": "v_cursor_26",
+    "toolId": "t_cursor",
+    "versionName": "2026",
+    "fullName": "Cursor",
+    "description": "The default IDE for the AI era. Autonomously reads across thousands of files to apply full architecture refactors directly using tools like Claude 4.6.",
+    "bestFor": "Autonomous codebase-wide refactors",
+    "pricingModel": "Pro",
+    "contextWindow": "Large via API",
+    "platforms": "Desktop IDE",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "code"
+    ]
+  },
+  {
+    "id": "v_replit_agent3",
+    "toolId": "t_replit",
+    "versionName": "Agent 3",
+    "fullName": "Replit Agent 3",
+    "description": "Perfect tool for non-engineers. Translates a raw text prompt straight into a functional deployed application, complete with database provisioning.",
+    "bestFor": "Text-to-Prototype zero-setup deployment",
+    "pricingModel": "Pro",
+    "contextWindow": "N/A",
+    "platforms": "Web IDE",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "code"
+    ]
+  },
+  {
+    "id": "v_sonar_council",
+    "toolId": "t_perplexity",
+    "versionName": "Model Council",
+    "fullName": "Perplexity Model Council",
+    "description": "Runs a single query across multiple apex models (GPT-5.4, Claude 4.6, Gemini 3) simultaneously to calculate a consensus. Nullifies hallucination risks for high-stakes enterprise decisions.",
+    "bestFor": "High-stakes consensus research",
+    "pricingModel": "Enterprise",
+    "contextWindow": "Large",
+    "platforms": "Web, API",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "tasks"
+    ]
+  },
+  {
+    "id": "v_character_pip",
+    "toolId": "t_characterai",
+    "versionName": "PipSqueak",
+    "fullName": "Character.ai PipSqueak",
+    "description": "Companions possessing long-term emotional memory and interactive multi-modal real-time audio chat capabilities.",
+    "bestFor": "Virtual companionship and roleplay",
+    "pricingModel": "Free",
+    "contextWindow": "Extensive",
+    "platforms": "Web, App",
+    "createdAt": 1767225600,
+    "categoryIds": [
+      "writing"
+    ]
   },
   {
     "id": "v_google_gemini_3_flash_preview",
@@ -1153,7 +1540,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Pro",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1765987078,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_2_chat",
@@ -1164,7 +1557,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1765389783,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_2_pro",
@@ -1175,7 +1573,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Enterprise",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1765389780,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_2",
@@ -1186,7 +1589,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1765389775,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_devstral_2512",
@@ -1197,7 +1605,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1765285419,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_1_codex_max",
@@ -1208,7 +1621,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Advanced coding and syntax assistance",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1764878934,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_ministral_14b_2512",
@@ -1219,7 +1637,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1764681735,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_ministral_8b_2512",
@@ -1230,7 +1653,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1764681654,
+    "categoryIds": [
+      "code",
+      "video",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_ministral_3b_2512",
@@ -1241,7 +1670,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1764681560,
+    "categoryIds": [
+      "code",
+      "video",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mistral_large_2512",
@@ -1252,7 +1687,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1764624472,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_deepseek_deepseek_v3_2_speciale",
@@ -1263,7 +1703,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "163,840 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1764594837,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_deepseek_deepseek_v3_2",
@@ -1274,7 +1718,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1764594642,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_anthropic_claude_opus_4_5",
@@ -1285,7 +1733,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Deep logical & mathematical reasoning",
     "pricingModel": "Pro",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1764010580,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemini_3_pro_image_preview",
@@ -1296,7 +1749,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "65,536 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1763653797,
+    "categoryIds": [
+      "code",
+      "video",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_1",
@@ -1307,7 +1766,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1763060305,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_1_chat",
@@ -1318,7 +1782,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1763060302,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_1_codex",
@@ -1329,7 +1798,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Advanced coding and syntax assistance",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1763060298,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_1_codex_mini",
@@ -1340,7 +1814,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Advanced coding and syntax assistance",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1763057820,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_voxtral_small_24b_2507",
@@ -1351,7 +1830,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "32,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1761835144,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_oss_safeguard_20b",
@@ -1362,7 +1847,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1761752836,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_vl_32b_instruct",
@@ -1373,7 +1863,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1761231332,
+    "categoryIds": [
+      "tasks",
+      "code",
+      "video"
+    ]
   },
   {
     "id": "v_openai_gpt_5_image_mini",
@@ -1384,7 +1880,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1760624583,
+    "categoryIds": [
+      "code",
+      "video",
+      "tasks"
+    ]
   },
   {
     "id": "v_anthropic_claude_haiku_4_5",
@@ -1395,7 +1897,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1760547638,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_vl_8b_thinking",
@@ -1406,7 +1913,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "256,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1760463746,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_vl_8b_instruct",
@@ -1417,7 +1928,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "256,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1760463308,
+    "categoryIds": [
+      "tasks",
+      "code",
+      "video"
+    ]
   },
   {
     "id": "v_openai_gpt_5_image",
@@ -1428,7 +1945,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1760447986,
+    "categoryIds": [
+      "code",
+      "video",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_o3_deep_research",
@@ -1439,7 +1962,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1760129661,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_o4_mini_deep_research",
@@ -1450,7 +1978,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1760129642,
+    "categoryIds": [
+      "code",
+      "video",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemini_2_5_flash_image",
@@ -1461,7 +1995,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Pro",
     "contextWindow": "32,768 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1759870431,
+    "categoryIds": [
+      "code",
+      "video",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_vl_30b_a3b_thinking",
@@ -1472,7 +2012,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1759794479,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_qwen_qwen3_vl_30b_a3b_instruct",
@@ -1483,7 +2028,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1759794476,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_openai_gpt_5_pro",
@@ -1494,7 +2044,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Enterprise",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1759776663,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_anthropic_claude_sonnet_4_5",
@@ -1505,7 +2060,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1759161676,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_deepseek_deepseek_v3_2_exp",
@@ -1516,7 +2076,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "163,840 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1759150481,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemini_2_5_flash_lite_preview_09_2025",
@@ -1527,7 +2091,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Pro",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1758819686,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_vl_235b_a22b_thinking",
@@ -1538,7 +2108,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1758668690,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_qwen_qwen3_vl_235b_a22b_instruct",
@@ -1549,7 +2124,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1758668687,
+    "categoryIds": [
+      "tasks",
+      "code",
+      "video"
+    ]
   },
   {
     "id": "v_qwen_qwen3_max",
@@ -1560,7 +2141,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1758662808,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_coder_plus",
@@ -1571,7 +2156,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Advanced coding and syntax assistance",
     "pricingModel": "Open Source",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1758662707,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_openai_gpt_5_codex",
@@ -1582,7 +2172,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Advanced coding and syntax assistance",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1758643403,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_deepseek_deepseek_v3_1_terminus",
@@ -1593,7 +2188,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "163,840 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1758548275,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_coder_flash",
@@ -1604,7 +2203,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Advanced coding and syntax assistance",
     "pricingModel": "Open Source",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1758115536,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_qwen_qwen3_next_80b_a3b_thinking",
@@ -1615,7 +2219,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1757612284,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_qwen_qwen3_next_80b_a3b_instruct_free",
@@ -1626,7 +2235,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Free",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1757612213,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_qwen_qwen3_next_80b_a3b_instruct",
@@ -1637,7 +2251,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1757612213,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_qwen_qwen_plus_2025_07_28_thinking",
@@ -1648,7 +2267,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1757347599,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen_plus_2025_07_28",
@@ -1659,7 +2282,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1757347599,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_30b_a3b_thinking_2507",
@@ -1670,7 +2297,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1756399192,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_deepseek_deepseek_chat_v3_1",
@@ -1681,7 +2312,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "163,840 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1755779628,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4o_audio_preview",
@@ -1692,7 +2327,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1755233061,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mistral_medium_3_1",
@@ -1703,7 +2344,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1755095639,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_chat",
@@ -1714,7 +2360,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1754587837,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5",
@@ -1725,7 +2376,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1754587413,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_mini",
@@ -1736,7 +2392,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1754587407,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_5_nano",
@@ -1747,7 +2408,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "400,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1754587402,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_oss_120b_free",
@@ -1758,7 +2424,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Free",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1754414231,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_oss_120b",
@@ -1769,7 +2440,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1754414231,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_oss_20b_free",
@@ -1780,7 +2456,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Free",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1754414229,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_oss_20b",
@@ -1791,7 +2472,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1754414229,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_anthropic_claude_opus_4_1",
@@ -1802,7 +2488,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Deep logical & mathematical reasoning",
     "pricingModel": "Enterprise",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1754411591,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_codestral_2508",
@@ -1813,7 +2504,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Advanced coding and syntax assistance",
     "pricingModel": "Open Source",
     "contextWindow": "256,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1754079630,
+    "categoryIds": [
+      "code",
+      "writing",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_coder_30b_a3b_instruct",
@@ -1824,7 +2521,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Advanced coding and syntax assistance",
     "pricingModel": "Open Source",
     "contextWindow": "160,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1753972379,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_qwen_qwen3_30b_a3b_instruct_2507",
@@ -1835,7 +2537,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1753806965,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_235b_a22b_thinking_2507",
@@ -1846,7 +2552,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1753449557,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_coder_free",
@@ -1857,7 +2567,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Advanced coding and syntax assistance",
     "pricingModel": "Free",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1753230546,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_qwen_qwen3_coder",
@@ -1868,7 +2583,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Advanced coding and syntax assistance",
     "pricingModel": "Open Source",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1753230546,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_google_gemini_2_5_flash_lite",
@@ -1879,7 +2599,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Pro",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1753200276,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_235b_a22b_2507",
@@ -1890,7 +2616,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "262,144 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1753119555,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_devstral_medium",
@@ -1901,7 +2631,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1752161321,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_devstral_small",
@@ -1912,7 +2647,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1752160751,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mistral_small_3_2_24b_instruct",
@@ -1923,7 +2663,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1750443016,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemini_2_5_flash",
@@ -1934,7 +2679,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Pro",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1750172488,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemini_2_5_pro",
@@ -1945,7 +2696,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1750169544,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_o3_pro",
@@ -1956,7 +2713,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Enterprise",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1749598352,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemini_2_5_pro_preview",
@@ -1967,7 +2729,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1749137257,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_deepseek_deepseek_r1_0528",
@@ -1978,7 +2746,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "163,840 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1748455170,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_anthropic_claude_opus_4",
@@ -1989,7 +2761,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Deep logical & mathematical reasoning",
     "pricingModel": "Enterprise",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1747931245,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_anthropic_claude_sonnet_4",
@@ -2000,7 +2777,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1747930371,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemma_3n_e4b_it",
@@ -2011,7 +2793,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "32,768 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1747776824,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mistral_medium_3",
@@ -2022,7 +2810,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1746627341,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemini_2_5_pro_preview_05_06",
@@ -2033,7 +2826,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1746578513,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_30b_a3b",
@@ -2044,7 +2843,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1745878604,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_8b",
@@ -2055,7 +2858,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1745876632,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_14b",
@@ -2066,7 +2873,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,702 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1745876478,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_32b",
@@ -2077,7 +2888,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1745875945,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen3_235b_a22b",
@@ -2088,7 +2903,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1745875757,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_o4_mini_high",
@@ -2099,7 +2918,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1744824212,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_o3",
@@ -2110,7 +2934,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1744823457,
+    "categoryIds": [
+      "code",
+      "writing",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_o4_mini",
@@ -2121,7 +2951,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1744820942,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4_1",
@@ -2132,7 +2967,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "1,047,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1744651385,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4_1_mini",
@@ -2143,7 +2983,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "1,047,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1744651381,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4_1_nano",
@@ -2154,7 +2999,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "1,047,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1744651369,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_deepseek_deepseek_chat_v3_0324",
@@ -2165,7 +3015,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "163,840 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1742824755,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_o1_pro",
@@ -2176,7 +3030,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Enterprise",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1742423211,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mistral_small_3_1_24b_instruct",
@@ -2187,7 +3046,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1742238937,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemma_3_4b_it",
@@ -2198,7 +3062,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1741905510,
+    "categoryIds": [
+      "code",
+      "video",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemma_3_12b_it",
@@ -2209,7 +3079,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1741902625,
+    "categoryIds": [
+      "code",
+      "video",
+      "tasks"
+    ]
   },
   {
     "id": "v_cohere_command_a",
@@ -2220,7 +3096,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "256,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1741894342,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_openai_gpt_4o_mini_search_preview",
@@ -2231,7 +3112,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1741818122,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4o_search_preview",
@@ -2242,7 +3128,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1741817949,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemma_3_27b_it",
@@ -2253,7 +3144,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1741756359,
+    "categoryIds": [
+      "code",
+      "video",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemini_2_0_flash_lite_001",
@@ -2264,7 +3161,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Pro",
     "contextWindow": "1,048,576 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1740506212,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mistral_saba",
@@ -2275,7 +3178,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "32,768 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1739803239,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_o3_mini_high",
@@ -2286,7 +3194,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1739372611,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemini_2_0_flash_001",
@@ -2297,7 +3210,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "High-speed conversational logic",
     "pricingModel": "Pro",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1738769413,
+    "categoryIds": [
+      "code",
+      "audio",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen2_5_vl_72b_instruct",
@@ -2308,7 +3227,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1738410311,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen_plus",
@@ -2319,7 +3242,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "1,000,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1738409840,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_o3_mini",
@@ -2330,7 +3257,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1738351721,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mistral_small_24b_instruct_2501",
@@ -2341,7 +3273,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "32,768 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1738255409,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_deepseek_deepseek_r1_distill_qwen_32b",
@@ -2352,7 +3289,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1738194830,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_deepseek_deepseek_r1_distill_llama_70b",
@@ -2363,7 +3304,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1737663169,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_deepseek_deepseek_r1",
@@ -2374,7 +3319,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "163,840 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1737381095,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_deepseek_deepseek_chat",
@@ -2385,7 +3334,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "163,840 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1735241320,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_openai_o1",
@@ -2396,7 +3350,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Enterprise",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1734459999,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_cohere_command_r7b_12_2024",
@@ -2407,7 +3366,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1734158152,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4o_2024_11_20",
@@ -2418,7 +3381,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1732127594,
+    "categoryIds": [
+      "code",
+      "writing",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mistral_large_2411",
@@ -2429,7 +3398,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1731978685,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mistral_large_2407",
@@ -2440,7 +3414,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1731978415,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_pixtral_large_2411",
@@ -2451,7 +3430,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1731977388,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen_2_5_coder_32b_instruct",
@@ -2462,7 +3446,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "Advanced coding and syntax assistance",
     "pricingModel": "Open Source",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1731368400,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_anthropic_claude_3_5_haiku",
@@ -2473,7 +3462,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1730678400,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_qwen_qwen_2_5_7b_instruct",
@@ -2484,7 +3478,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1729036800,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_qwen_qwen_2_5_72b_instruct",
@@ -2495,7 +3494,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1726704000,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_cohere_command_r_08_2024",
@@ -2506,7 +3510,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1724976000,
+    "categoryIds": [
+      "tasks",
+      "code"
+    ]
   },
   {
     "id": "v_cohere_command_r_plus_08_2024",
@@ -2517,7 +3526,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1724976000,
+    "categoryIds": [
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4o_2024_08_06",
@@ -2528,7 +3541,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1722902400,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mistral_nemo",
@@ -2539,7 +3557,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "131,072 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1721347200,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4o_mini_2024_07_18",
@@ -2550,7 +3573,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1721260800,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4o_mini",
@@ -2561,7 +3589,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1721260800,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_google_gemma_2_27b_it",
@@ -2572,7 +3605,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "8,192 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1720828800,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4o",
@@ -2583,7 +3621,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1715558400,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4o_2024_05_13",
@@ -2594,7 +3637,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1715558400,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mixtral_8x22b_instruct",
@@ -2605,7 +3653,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "65,536 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1713312000,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4_turbo",
@@ -2616,7 +3669,13 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1712620800,
+    "categoryIds": [
+      "code",
+      "video",
+      "tasks"
+    ]
   },
   {
     "id": "v_anthropic_claude_3_haiku",
@@ -2627,7 +3686,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "200,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1710288000,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mistral_large",
@@ -2638,7 +3702,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1708905600,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_3_5_turbo_0613",
@@ -2649,7 +3718,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "4,095 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1706140800,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4_turbo_preview",
@@ -2660,7 +3734,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1706140800,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4_1106_preview",
@@ -2671,7 +3750,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "128,000 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1699228800,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_mistralai_mistral_7b_instruct_v0_1",
@@ -2682,7 +3766,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Open Source",
     "contextWindow": "4,096 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1695859200,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_3_5_turbo_instruct",
@@ -2693,7 +3782,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "4,095 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1695859200,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_3_5_turbo_16k",
@@ -2704,7 +3798,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "16,385 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1693180800,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4_0314",
@@ -2715,7 +3814,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Enterprise",
     "contextWindow": "8,191 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1685232000,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_3_5_turbo",
@@ -2726,7 +3830,12 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Pro",
     "contextWindow": "16,385 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1685232000,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   },
   {
     "id": "v_openai_gpt_4",
@@ -2737,6 +3846,11 @@ export const TOOL_VERSIONS: ToolVersion[] = [
     "bestFor": "General reasoning and tasks",
     "pricingModel": "Enterprise",
     "contextWindow": "8,191 tokens",
-    "platforms": "Web, API"
+    "platforms": "Web, API",
+    "createdAt": 1685232000,
+    "categoryIds": [
+      "code",
+      "tasks"
+    ]
   }
 ];
