@@ -22,3 +22,8 @@ export const googleProvider = new GoogleAuthProvider();
 export const appleProvider = new OAuthProvider('apple.com');
 appleProvider.addScope('email');
 appleProvider.addScope('name');
+
+export const microsoftProvider = new OAuthProvider('microsoft.com');
+microsoftProvider.addScope('mail.read');
+microsoftProvider.addScope('User.Read');
+

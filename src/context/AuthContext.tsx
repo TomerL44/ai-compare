@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { User as FirebaseUser } from 'firebase/auth';
-import { signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth, googleProvider, appleProvider } from '../lib/firebase';
+import { signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth, googleProvider, appleProvider, microsoftProvider } from '../lib/firebase';
 
 export interface User {
   id: string;
@@ -16,8 +16,9 @@ interface AuthContextType {
   isLoading: boolean;
   loginGoogle: () => Promise<void>;
   loginApple: () => Promise<void>;
+  loginMicrosoft: () => Promise<void>;
   loginEmail: (e: string, p: string) => Promise<void>;
-  signupEmail: (e: string, p: string) => Promise<void>;
+  signupEmail: (e: string, p: string, displayName: string) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -73,9 +74,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const signupEmail = async (email: string, pass: string) => {
+  const loginMicrosoft = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, pass);
+      await signInWithPopup(auth, microsoftProvider);
+    } catch (error) {
+      console.error("Error signing in with Microsoft", error);
+      throw error;
+    }
+  };
+
+  const signupEmail = async (email: string, pass: string, displayName: string) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+      await updateProfile(userCredential.user, { displayName });
+      setUser(prev => prev ? { ...prev, displayName } : null);
     } catch (error) {
       console.error("Error signing up with Email", error);
       throw error;
@@ -91,7 +103,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, loginGoogle, loginApple, loginEmail, signupEmail, logout }}>
+    <AuthContext.Provider value={{ user, isLoading, loginGoogle, loginApple, loginMicrosoft, loginEmail, signupEmail, logout }}>
       {children}
     </AuthContext.Provider>
   );
