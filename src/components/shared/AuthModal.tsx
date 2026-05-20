@@ -6,6 +6,62 @@ interface AuthModalProps {
   onClose: () => void;
 }
 
+const getFriendlyErrorMessage = (error: any): string => {
+  if (!error) return 'An unknown error occurred.';
+  
+  const code = error.code || '';
+  const message = error.message || '';
+  
+  // 1. Weak password
+  if (code === 'auth/weak-password' || message.includes('auth/weak-password')) {
+    return 'Password is too weak. It must be at least 6 characters long.';
+  }
+  
+  // 2. Invalid credentials (incorrect password, wrong email, user-not-found)
+  if (
+    code === 'auth/invalid-credential' || 
+    code === 'auth/wrong-password' || 
+    code === 'auth/user-not-found' ||
+    message.includes('auth/invalid-credential') ||
+    message.includes('auth/wrong-password') ||
+    message.includes('auth/user-not-found')
+  ) {
+    return 'Incorrect email or password. Please try again.';
+  }
+  
+  // 3. Email already in use
+  if (code === 'auth/email-already-in-use' || message.includes('auth/email-already-in-use')) {
+    return 'This email is already registered. Try signing in instead.';
+  }
+  
+  // 4. Invalid email format
+  if (code === 'auth/invalid-email' || message.includes('auth/invalid-email')) {
+    return 'Please enter a valid email address.';
+  }
+  
+  // 5. Too many failed attempts
+  if (code === 'auth/too-many-requests' || message.includes('auth/too-many-requests')) {
+    return 'Too many failed login attempts. Please try again later.';
+  }
+
+  // 6. Network error
+  if (code === 'auth/network-request-failed' || message.includes('auth/network-request-failed')) {
+    return 'Network connection error. Please check your internet connection and try again.';
+  }
+
+  // 7. Domain not authorized
+  if (code === 'auth/unauthorized-domain' || message.includes('auth/unauthorized-domain')) {
+    return 'Domain not authorized. Please make sure "aicomparator.vercel.app" is whitelisted in your Firebase Console Settings.';
+  }
+  
+  // Clean up any other generic message
+  let cleanMsg = message || String(error);
+  if (cleanMsg.startsWith('Firebase: ')) {
+    cleanMsg = cleanMsg.replace(/^Firebase:\s*(Error\s*\(auth\/[a-zA-Z-]+\)\.?\s*)?/i, '');
+  }
+  return cleanMsg;
+};
+
 const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
   const { loginGoogle, loginApple, loginEmail, signupEmail } = useAuth();
   const [loading, setLoading] = useState(false);
@@ -29,7 +85,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
       console.error("Auth error", err);
       // Detailed error only if it's not simply "popup-closed-by-user" which is normal
       if (err.code !== 'auth/popup-closed-by-user' && err.code !== 'auth/cancelled-popup-request') {
-        setError(err.message || 'Authentication failed. Please try again or check Firebase config.');
+        setError(getFriendlyErrorMessage(err));
       }
     } finally {
       setLoading(false);
@@ -54,7 +110,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
       onClose();
     } catch (err: any) {
       console.error("Email auth error", err);
-      setError(err.message || 'Authentication failed. Please check your credentials.');
+      setError(getFriendlyErrorMessage(err));
     } finally {
       setLoading(false);
     }
@@ -91,9 +147,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
           </div>
 
           {error && (
-            <div className="mb-6 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-xs text-center">
+            <div className="mb-6 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-xs text-center font-medium">
               {error}
-              <div className="mt-1 text-white/40">Ensure your .env file has valid Firebase API keys.</div>
             </div>
           )}
 
