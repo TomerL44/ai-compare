@@ -24,6 +24,12 @@ const AgentCard: React.FC<AgentCardProps> = ({
   const parent = TOOLS.find(t => t.id === agent.toolId);
   const company = parent?.company || 'Unknown';
 
+  // Strip the redundant "Provider: " prefix that OpenRouter adds to fullName
+  // e.g. "Google: Gemini 3.5 Flash" → "Gemini 3.5 Flash"
+  const displayName = agent.fullName.includes(': ')
+    ? agent.fullName.split(': ').slice(1).join(': ')
+    : agent.fullName;
+
   return (
     <div className="group relative flex flex-col bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-300 shadow-lg hover:shadow-indigo-500/10">
       
@@ -37,8 +43,8 @@ const AgentCard: React.FC<AgentCardProps> = ({
             onClick={onClickDetails}
           >
             <div className="flex-1 min-w-0">
-              <h3 className="text-2xl font-bold text-white mb-2 group-hover/title:text-indigo-400 transition-colors break-words leading-tight tracking-wide">
-                {agent.fullName}
+              <h3 className="text-xl font-bold text-white mb-2 group-hover/title:text-indigo-400 transition-colors leading-tight tracking-wide line-clamp-2">
+                {displayName}
               </h3>
               
               <div className="flex items-center gap-1.5 mb-1.5">

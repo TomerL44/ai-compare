@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start-backend": "tsx backend/mockServer.ts"
+    "start-backend": "tsx backend/mockServer.ts",
+    "sync-models": "tsx scripts/syncModels.ts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

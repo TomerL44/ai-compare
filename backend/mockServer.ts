@@ -4,6 +4,7 @@ import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import cron from 'node-cron';
 import { fetchAndUpsertModels } from './apiFetcher';
+import { TOOLS, TOOL_VERSIONS } from '../src/data/agents';
 
 
 const app = express();
@@ -73,6 +74,16 @@ app.post('/api/votes', voteLimiter, (req: Request, res: Response) => {
   // INSERT INTO votes (user_id, agent_id, score) VALUES (?, ?, ?)
 
   res.status(201).json({ message: 'Vote recorded successfully', vote: newVote });
+});
+
+// API ENDPOINT: Get all tools
+app.get('/api/tools', (req: Request, res: Response) => {
+  res.json(TOOLS);
+});
+
+// API ENDPOINT: Get all tool versions
+app.get('/api/tool_versions', (req: Request, res: Response) => {
+  res.json(TOOL_VERSIONS);
 });
 
 // API ENDPOINT: Get aggregated tier list rankings
