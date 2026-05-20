@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 import type { ToolVersion, Tool } from '../../data/agents';
 import { X, Check } from 'lucide-react';
 import { cn } from '../../utils/utils';
@@ -48,7 +49,9 @@ const DetailModal: React.FC<DetailModalProps> = ({ version, parentTool, onClose 
             <div className="md:col-span-2 space-y-6">
               <section>
                 <h3 className="text-sm font-semibold text-white/40 uppercase tracking-wider mb-2">Summary</h3>
-                <p className="text-white/80 leading-relaxed">{version.description}</p>
+                <div className="text-white/80 leading-relaxed prose prose-invert prose-p:my-2 prose-a:text-indigo-400 prose-a:no-underline hover:prose-a:underline prose-sm max-w-none">
+                  <ReactMarkdown>{version.description}</ReactMarkdown>
+                </div>
               </section>
               
               <section>

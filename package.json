@@ -1,7 +1,7 @@
 {
   "name": "ai-compare",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -23,6 +23,7 @@
     "node-cron": "^4.2.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-markdown": "^10.1.0",
     "tailwind-merge": "^3.5.0",
     "tsx": "^4.22.3"
   },

@@ -322,12 +322,16 @@ async function run() {
           platforms = 'Local, API';
         }
 
+        // Clean markdown links [text](url) -> text from description
+        const cleanDescription = (model.description || 'No description provided.')
+          .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+
         const newVersion: ToolVersion = {
           id: versionId,
           toolId,
           versionName,
           fullName: model.name,
-          description: model.description || 'No description provided.',
+          description: cleanDescription,
           bestFor,
           pricingModel,
           contextWindow: model.context_length ? `${model.context_length.toLocaleString()} tokens` : 'Unknown',
@@ -343,6 +347,12 @@ async function run() {
         if (existing.createdAt === DEFAULT_CURATED_TIMESTAMP && model.created) {
           existing.createdAt = model.created;
         }
+        
+        // Ensure description is cleaned from markdown links on sync
+        if (model.description) {
+          existing.description = model.description.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+        }
+
         // Merge new categories into existing ones (additive)
         const mergedCategories = new Set([...existing.categoryIds, ...categoryIds]);
         existing.categoryIds = Array.from(mergedCategories);

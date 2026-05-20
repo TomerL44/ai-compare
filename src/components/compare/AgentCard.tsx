@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import type { ToolVersion } from '../../data/agents';
 import { TOOLS } from '../../data/agents';
 import { ArrowRightLeft, Info, Activity, Heart } from 'lucide-react';
@@ -77,9 +78,9 @@ const AgentCard: React.FC<AgentCardProps> = ({
           </div>
         </div>
 
-        <p className="text-white/70 text-sm mb-6 flex-1 line-clamp-2">
-          {agent.description}
-        </p>
+        <div className="text-white/70 text-sm mb-6 flex-1 line-clamp-2 prose prose-invert prose-p:my-0 prose-a:text-indigo-400 prose-sm max-w-none">
+          <ReactMarkdown>{agent.description}</ReactMarkdown>
+        </div>
 
         <div className="flex items-center gap-3 mb-6">
           <span className={`px-2.5 py-1 text-xs font-semibold rounded-md border ${
