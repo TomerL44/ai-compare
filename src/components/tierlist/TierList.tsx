@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import type { ToolVersion } from '../../data/agents';
 
 import { cn } from '../../utils/utils';
-import { Heart, Activity, Trophy, Clock, Users, ExternalLink } from 'lucide-react';
+import { Heart, Activity, Trophy, Clock, Users } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import AuthModal from '../shared/AuthModal';
 
@@ -113,7 +113,7 @@ const ArenaTierRow = ({ tier, entries }: { tier: typeof ARENA_TIERS[0], entries:
             No models in this tier
           </div>
         ) : (
-          entries.map((entry, idx) => (
+          entries.map((entry) => (
             <div 
               key={entry.model}
               className="group relative flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl p-3 pr-4 transition-all w-[280px]"
