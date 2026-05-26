@@ -17,11 +17,10 @@ interface TierListProps {
 }
 
 const TIERS = [
-  { id: 'S', name: 'Awesome', color: 'bg-pink-500/20 border-pink-500/40 text-pink-400', threshold: 4.5 },
-  { id: 'A', name: 'Cool', color: 'bg-orange-500/20 border-orange-500/40 text-orange-400', threshold: 3.5 },
-  { id: 'B', name: 'Normal', color: 'bg-yellow-600/20 border-yellow-600/40 text-yellow-500', threshold: 2.5 },
-  { id: 'C', name: 'Bad', color: 'bg-yellow-400/20 border-yellow-400/40 text-yellow-300', threshold: 1.5 },
-  { id: 'D', name: 'Horrible', color: 'bg-green-500/20 border-green-500/40 text-green-400', threshold: 0 },
+  { id: 'A', name: 'Awesome', color: 'bg-pink-500/20 border-pink-500/40 text-pink-400', threshold: 3.5 },
+  { id: 'B', name: 'Cool', color: 'bg-orange-500/20 border-orange-500/40 text-orange-400', threshold: 2.5 },
+  { id: 'C', name: 'Normal', color: 'bg-yellow-600/20 border-yellow-600/40 text-yellow-500', threshold: 1.5 },
+  { id: 'D', name: 'Bad', color: 'bg-green-500/20 border-green-500/40 text-green-400', threshold: 0 },
 ];
 
 // ── ARENA_TIER_LIST_FEATURE: Arena-specific tiers (A-D only) ──
@@ -33,14 +32,14 @@ const ARENA_TIERS = [
 ];
 
 export const MOCK_AVERAGES: Record<string, number> = {
-  'v_chatgpt_4o': 4.8,
-  'v_claude_opus_4_6': 4.9,
-  'v_cursor_1': 4.7,
-  'v_gemini_3_1_pro': 3.9,
-  'v_copilot_1': 3.8,
-  'v_jasper_1': 2.6,
-  'v_sora_1': 4.6,
-  'v_runway_gen2': 3.8
+  'v_chatgpt_4o': 3.8,
+  'v_claude_opus_4_6': 3.9,
+  'v_cursor_1': 3.7,
+  'v_gemini_3_1_pro': 3.1,
+  'v_copilot_1': 3.0,
+  'v_jasper_1': 2.1,
+  'v_sora_1': 3.6,
+  'v_runway_gen2': 3.0
 };
 
 type TierMode = 'community' | 'arena';
@@ -73,7 +72,7 @@ const TierRow = ({ tier, versions, rankings, onOpenDetails, onVote }: { tier: ty
                   </div>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="text-sm font-bold text-white truncate group-hover:text-indigo-300 transition-colors">{version.fullName}</h4>
+                  <h4 className="text-sm font-bold text-white whitespace-normal break-words leading-snug group-hover:text-indigo-300 transition-colors">{version.fullName}</h4>
                   <div className="flex items-center gap-1.5 mt-0.5">
                     <Activity className="w-3 h-3 text-white/40" />
                     <span className="text-xs font-medium text-white/50">Avg: {score.toFixed(1)}</span>
@@ -116,18 +115,14 @@ const ArenaTierRow = ({ tier, entries }: { tier: typeof ARENA_TIERS[0], entries:
           entries.map((entry) => (
             <div 
               key={entry.model}
-              className="group relative flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl p-3 pr-4 transition-all w-[280px]"
+              className="group relative flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl p-3 pr-4 transition-all w-full sm:w-[280px] min-h-[72px]"
             >
               {/* Rank badge */}
               <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-white/5 border border-white/10 relative flex-shrink-0">
                 <span className="text-lg font-black text-white/60">#{entry.rank}</span>
               </div>
               <div className="flex-1 min-w-0">
-                <h4 className="text-sm font-bold text-white truncate">{entry.model}</h4>
-                <div className="flex items-center gap-3 mt-0.5">
-                  <span className="text-xs font-medium text-white/40">{entry.vendor}</span>
-                  <span className="text-xs font-semibold text-amber-400/70">ELO {entry.score}</span>
-                </div>
+                <h4 className="text-sm font-bold text-white whitespace-normal break-words leading-snug">{entry.model}</h4>
               </div>
               <div className="flex flex-col items-end gap-0.5 ml-auto">
                 <span className="text-[10px] font-medium text-white/30 uppercase tracking-wider">{(entry.votes / 1000).toFixed(1)}k votes</span>
@@ -212,29 +207,35 @@ const TierList: React.FC<TierListProps> = ({ versions, categoryName, rankings: i
 
         {/* ── ARENA_TIER_LIST_FEATURE: Mode toggle ── */}
         <div className="flex items-center gap-3 flex-shrink-0">
-          <div className="flex items-center bg-black/30 p-1 rounded-xl border border-white/10 backdrop-blur-md">
+          <div className="flex items-center bg-white/[0.03] p-1 rounded-2xl border border-white/10 backdrop-blur-xl shadow-inner relative">
             <button
               onClick={() => setTierMode('community')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 relative ${
                 tierMode === 'community' 
-                  ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30' 
-                  : 'text-white/40 hover:text-white/70 border border-transparent'
+                  ? 'bg-gradient-to-r from-indigo-500/20 to-purple-500/25 text-indigo-200 border border-indigo-500/30 shadow-[0_0_15px_rgba(99,102,241,0.2)] font-extrabold' 
+                  : 'text-white/40 hover:text-white hover:bg-white/5 border border-transparent'
               }`}
             >
-              <Users className="w-3.5 h-3.5" />
+              <Users className={`w-4 h-4 transition-transform duration-300 ${tierMode === 'community' ? 'scale-110 text-indigo-400' : ''}`} />
               Community
+              {tierMode === 'community' && (
+                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-1 bg-indigo-400 rounded-full blur-[1px]" />
+              )}
             </button>
             <button
               onClick={() => setTierMode('arena')}
               disabled={arenaLoading || !arenaData}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 relative ${
                 tierMode === 'arena' 
-                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' 
-                  : 'text-white/40 hover:text-white/70 border border-transparent disabled:opacity-30 disabled:cursor-not-allowed'
+                  ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/25 text-amber-200 border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.2)] font-extrabold' 
+                  : 'text-white/40 hover:text-white hover:bg-white/5 border border-transparent disabled:opacity-30 disabled:cursor-not-allowed'
               }`}
             >
-              <Trophy className="w-3.5 h-3.5" />
+              <Trophy className={`w-4 h-4 transition-transform duration-300 ${tierMode === 'arena' ? 'scale-110 text-amber-400 rotate-6' : ''}`} />
               Arena AI
+              {tierMode === 'arena' && (
+                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-1 bg-amber-400 rounded-full blur-[1px]" />
+              )}
             </button>
           </div>
 
@@ -331,12 +332,11 @@ const TierList: React.FC<TierListProps> = ({ versions, categoryName, rankings: i
             <h3 className="text-xl font-bold text-white mb-2 text-center">Cast Your Vote</h3>
             <p className="text-white/60 text-sm text-center mb-6">How would you rank <span className="font-bold text-white">{votingVersion.fullName}</span>?</p>
             
-            <div className="grid grid-cols-5 gap-2">
+            <div className="grid grid-cols-4 gap-2">
               {TIERS.map((tier) => (
                 <button
                   key={tier.id}
                   onClick={() => handleCastVote(
-                    tier.id === 'S' ? 5 : 
                     tier.id === 'A' ? 4 : 
                     tier.id === 'B' ? 3 : 
                     tier.id === 'C' ? 2 : 1
